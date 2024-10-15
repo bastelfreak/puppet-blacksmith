@@ -46,7 +46,7 @@ module Blacksmith
     end
 
     %i[major minor patch full].each do |level|
-      define_method("bump_#{level}!") { bump!(level) }
+      define_method(:"bump_#{level}!") { bump!(level) }
     end
 
     def bump_dep!(module_name, version)
@@ -63,7 +63,7 @@ module Blacksmith
 
     def increase_version(version, level = :patch)
       v = VersionHelper::Version.new(version)
-      v.send("#{level}!").to_s
+      v.send(:"#{level}!").to_s
     end
 
     def replace_dependency_version(text, module_name, version)
